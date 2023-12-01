@@ -4,7 +4,7 @@
 
 int main(){
 
-    printf("Testadsf: %d\n", testadd(5,7));
+    printf("Testadsf: %d\n", testadd(5,8));
 
     return 0;
 

@@ -40,7 +40,7 @@ int main(){
             clear_buffer(tempstr, TEMPSTR_SIZE);
             strindex = 0;
 
-        }
+        }// This isalpha-case has to be removed to get the functionality of the first part of the puzzle again
         else if (isalpha(c))
         {
             tempstr[strindex++] = c;

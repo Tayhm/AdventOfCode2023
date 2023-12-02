@@ -1,14 +1,15 @@
+#include "util.h"
 
-void shift_buffer_left(char* buffer, int size){
+void shift_buffer_left(char* buffer, int size, int distance){
 
     int i;
     
-    for (i = 0; i < (size-1); i++)
+    for (i = 0; i < (size-distance); i++)
     {
-        buffer[i] = buffer[i + 1];
+        buffer[i] = buffer[i + distance];
     }
     
-    buffer[i] = 0;
+    clear_buffer(buffer+i, distance);
 
 }
 

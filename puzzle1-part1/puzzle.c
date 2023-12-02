@@ -28,8 +28,7 @@ int main(){
     {
         if(isdigit(c))
         {
-            printf("Found Digit: %c\n",c);
-            printf("Digits before: %s\n",digits);
+
             if (digits[0] == 0)
             {
                 digits[0] = c;
@@ -41,8 +40,6 @@ int main(){
             clear_buffer(tempstr, TEMPSTR_SIZE);
             strindex = 0;
 
-            printf("Digits after: %s\n",digits);
-
         }
         else if (isalpha(c))
         {
@@ -51,12 +48,9 @@ int main(){
 
                 // Check if any number-string is in the current buffer
                 if((test = strstr(tempstr, numbers[i])) != NULL){
-                    printf("FOUND SUBSTING: %s\n", test);
 
-                    printf("Digits before: %s\n",digits);
                     if (digits[0] == 0)
                     {   
-                        printf("True\n");
                         snprintf(digits_temp_storage, 2, "%d", i);
                         strncpy(&(digits[0]), digits_temp_storage, 1);
                     }
@@ -65,9 +59,9 @@ int main(){
                     strncpy(&(digits[1]), digits_temp_storage, 1);
 
                     // Now reset the buffer
-                    clear_buffer(tempstr, TEMPSTR_SIZE);
+                    shift_buffer_left(tempstr, TEMPSTR_SIZE, TEMPSTR_SIZE-strlen(numbers[i])+1);
                     strindex = 0;
-                    printf("Digits after: %s\n",digits);
+
                     break;
                 }
 
@@ -75,7 +69,7 @@ int main(){
 
             // If the index is too large, shift one to the left and decrement index to be able to keep writing
             if (strindex == 5){
-                shift_buffer_left(tempstr, TEMPSTR_SIZE);
+                shift_buffer_left(tempstr, TEMPSTR_SIZE, 1);
                 strindex = 4;
             }
 
@@ -84,7 +78,7 @@ int main(){
         
         else if(c == 0xa)   // 0xa == \n
         {
-            printf("Digits: %s\n", digits);
+            
             sum += atoi(digits);
             digits[0] = 0;
             digits[1] = 0;
